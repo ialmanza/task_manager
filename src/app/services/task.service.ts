@@ -10,39 +10,46 @@ export class TaskService {
 
     constructor() {
       this.tasks = [
-      //   {title: 'Task 1', description: 'Description 1', hide: true},
-      //   {title: 'Task 2', description: 'Description 2', hide: true}
        ]
     }
 
-    getTasks(){
-      if(localStorage.getItem('tasks') === null){
-        this.tasks = JSON.parse(localStorage.getItem('tasks')??'');
-        return this.tasks;
 
+
+    getTasks(): Task[] {
+      // Verifica si localStorage está disponible
+      if (typeof localStorage !== 'undefined') {
+         // Obtiene las tareas del localStorage
+         const storedTasks = localStorage.getItem('tasks');
+
+         // Si no hay tareas almacenadas, retorna un array vacío
+         if (!storedTasks) {
+             return [];
+         }
+
+         // Si hay tareas almacenadas, las parsea y las retorna
+         return JSON.parse(storedTasks);
       } else {
-       this.tasks = JSON.parse(localStorage.getItem('tasks')??'');
-        return this.tasks;
+         // Si localStorage no está disponible, retorna un array vacío
+         return [];
       }
+     }
 
+     addTask(task: Task) {
+      // Verifica si localStorage está disponible
+      if (typeof localStorage !== 'undefined') {
+         // Obtiene las tareas actuales del localStorage
+         const storedTasks = this.getTasks();
 
-    }
+         // Agrega la nueva tarea al array de tareas
+         storedTasks.push(task);
 
-    addTask(task: Task){
-      this.tasks.push(task);
-      let tasks: Task[] = [];
-      if(localStorage.getItem('tasks') === null){
-        tasks.push(task);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-
+         // Guarda el array actualizado en el localStorage
+         localStorage.setItem('tasks', JSON.stringify(storedTasks));
+      } else {
+         // Si localStorage no está disponible, puedes manejarlo como prefieras
+         console.error('localStorage no está disponible en este entorno.');
       }
-      else{
-        tasks = JSON.parse(localStorage.getItem('tasks')??'[]');
-        tasks.push(task);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-      }
-
-    }
+     }
 
 
     deleteTask(task: Task){
