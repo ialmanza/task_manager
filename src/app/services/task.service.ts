@@ -8,11 +8,11 @@ import { Task } from '../models/Task';
 })
 export class TaskService {
     tasks: Task[] = [];
+  platform: any;
 
-    constructor() {
-      this.tasks = [
-       ]
-    }
+    constructor( ) {
+      this.tasks = this.getTasks();
+  }
 
 
 
@@ -53,14 +53,7 @@ export class TaskService {
       }
      }
 
-    // deleteTask(task: Task){
-    //   for(let i = 0; i < this.tasks.length; i++){
-    //     if(this.tasks[i] === task){
-    //       this.tasks.splice(i, 1);
-    //       localStorage.setItem('tasks', JSON.stringify(this.tasks));
-    //     }
-    //   }
-    // }
+
 
     deleteTask(title: string) {
       // Verifica si localStorage está disponible

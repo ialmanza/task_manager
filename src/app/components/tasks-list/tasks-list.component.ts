@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/Task';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,6 @@ export class TasksListComponent implements OnInit {
 
   ngOnInit() {
    this.tasks = this.taskService.getTasks();
-   console.log('tasks', this.tasks);
   }
 
 
