@@ -21,9 +21,14 @@ export class TasksComponent {
 
   deleteTask(task: Task) {
     if(confirm('Are you sure?')){
+<<<<<<< HEAD
       this.taskService.deleteTask(task.id);
+=======
+      this.taskService.deleteTask(task.title);
+>>>>>>> 998e9d2078620bd6548cec5fbc29c9257893fe97
     }
   }
+
 
 
 }
