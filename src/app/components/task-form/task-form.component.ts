@@ -20,7 +20,9 @@ export class TaskFormComponent {
   }
 
   addTask(newtitle: HTMLInputElement, newdescription: HTMLTextAreaElement) {
+    const id = Date.now().toString();
     this.taskService.addTask({
+      id,
       title: newtitle.value,
       description: newdescription.value,
       hide: true

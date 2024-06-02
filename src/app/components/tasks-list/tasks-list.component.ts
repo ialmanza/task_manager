@@ -15,14 +15,12 @@ import { TasksComponent } from "../tasks/tasks.component";
 export class TasksListComponent implements OnInit {
   tasks: Task[] = [];
 
-  constructor(
-    public taskService: TaskService
-  ) {}
+  constructor(public taskService: TaskService) {}
 
   ngOnInit() {
-   this.tasks = this.taskService.getTasks();
-   console.log('tasks', this.tasks);
+    this.taskService.getTasks().subscribe((tasks: Task[]) => {
+      this.tasks = tasks;
+    });
   }
-
 
 }

@@ -21,7 +21,7 @@ export class TasksComponent {
 
   deleteTask(task: Task) {
     if(confirm('Are you sure?')){
-      this.taskService.deleteTask(task);
+      this.taskService.deleteTask(task.id);
     }
   }
 
